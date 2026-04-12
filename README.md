@@ -67,8 +67,8 @@ After installation, access the Shopware admin panel and complete the setup wizar
 ## Activate and migrate WbmProductType Plugin
 
 ```bash
-bin/console plugin:refresh
-bin/console plugin:install --activate WbmProductType
+docker compose exec web bin/console plugin:refresh
+docker compose exec web bin/console plugin:install --activate WbmProductType
 ```
 
 The migration runs automatically on install and creates the `wbm_product_extension` table.
@@ -76,8 +76,8 @@ The migration runs automatically on install and creates the `wbm_product_extensi
 ### Build frontend assets
 
 ```bash
-bin/build-js.sh 
-bin/console cache:clear
+docker compose exec web bin/build-js.sh 
+docker compose exec web bin/console cache:clear
 ```
 
 ### Elasticsearch / OpenSearch
@@ -85,7 +85,21 @@ bin/console cache:clear
 The plugin decorates storefront and admin ES indexers to index `productType`. Make sure ES/OpenSearch is enabled and rebuild the index:
 
 ```bash
-bin/console es:index --no-queue
+docker compose exec web bin/console es:index --no-queue
+```
+
+### PHP Unit tests
+
+Make simlink for tests:
+
+```bash
+docker compose exec web ln -s /var/www/html/vendor/wbm/product-type /var/www/html/custom/plugins/WbmProductType
+```
+
+Run plugin unit tests:
+
+```bash
+docker compose exec web bash -c 'APP_ENV=test ./vendor/bin/phpunit -c custom/plugins/WbmProductType/phpunit.xml'
 ```
 
 
