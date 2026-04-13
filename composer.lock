@@ -11548,7 +11548,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vitaliyberdylo/WbmProductType.git",
-                "reference": "dc02f64c8e8bdea83a912ac3b80fafe42f64f805"
+                "reference": "aafcd4756815565dbed16ea96c72676c650850bb"
             },
             "require": {
                 "shopware/core": ">=6.7",
@@ -11577,7 +11577,7 @@
                 "MIT"
             ],
             "description": "Shopware 6 plugin that adds a dedicated product type model, admin UI, storefront filtering and Elasticsearch integration.",
-            "time": "2026-04-12T11:11:32+00:00"
+            "time": "2026-04-12T22:23:08+00:00"
         },
         {
             "name": "zircote/swagger-php",
